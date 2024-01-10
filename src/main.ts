@@ -26,6 +26,10 @@ const getPresignedUrlHandler = async (
 
     return {
       statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*", // Adjust as needed for security
+        // Include other CORS headers if necessary
+      },
       body: JSON.stringify({ presignedUrl, key }),
     };
   } catch (error) {
