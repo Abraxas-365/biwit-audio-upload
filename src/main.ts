@@ -13,6 +13,7 @@ const getPresignedUrlHandler = async (
   try {
     const key = uuidv4() + ".mp3";
     const bucketName = process.env.BUCKET_NAME;
+    const region = process.env.REGION;
 
     const command = new PutObjectCommand({
       Bucket: bucketName,
@@ -24,13 +25,16 @@ const getPresignedUrlHandler = async (
       expiresIn: 3600,
     });
 
+    // Construct the file's HTTP URL
+    const fileHttpUrl = `https://${bucketName}.s3.${region}.amazonaws.com/${key}`;
+
     return {
       statusCode: 200,
       headers: {
         "Access-Control-Allow-Origin": "*", // Adjust as needed for security
         // Include other CORS headers if necessary
       },
-      body: JSON.stringify({ presignedUrl, key }),
+      body: JSON.stringify({ presignedUrl, fileHttpUrl }),
     };
   } catch (error) {
     console.error(error);
