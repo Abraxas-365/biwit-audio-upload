@@ -26,7 +26,7 @@ const getPresignedUrlHandler = async (
     });
 
     // Construct the file's HTTP URL
-    const fileHttpUrl = `https://${bucketName}.s3.${region}.amazonaws.com/${key}`;
+    const fileHttpUrl = `https://${bucketName}.s3.amazonaws.com/${key}`;
 
     return {
       statusCode: 200,
