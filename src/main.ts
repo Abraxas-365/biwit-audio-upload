@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { handlerMiddleware } from "./shared/middleware/handlerMiddleware";
 import { internalServerError } from "./shared";
 
-const s3Client = new S3Client({ region: process.env.AWS_REGION });
+const s3Client = new S3Client({ region: process.env.REGION });
 
 const getPresignedUrlHandler = async (
   event: APIGatewayProxyEvent,
