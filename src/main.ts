@@ -19,6 +19,7 @@ const getPresignedUrlHandler = async (
       Bucket: bucketName,
       Key: key,
       ContentType: "audio/mpeg",
+      ACL: "public-read", // Set ACL to public-read
     });
 
     const presignedUrl = await getSignedUrl(s3Client, command, {
